@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <h1>Welcome to the DOM Example</h1>
+    <h2>CSS selector example</h2>
+    <p>This will turn into red color</p>
+    <p>This will turn into red color as well</p>
+
+    <script>
+        const paragraphs = document.querySelectorAll("p");
+        paragraphs.forEach((para)=>{
+            para.style.color = "red";
+        });
+    </script>
+</body>
+</html>
