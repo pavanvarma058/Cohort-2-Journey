@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <input type="text" placeholder="First Number">
+    <br>
+    <input type="text" placeholder="Second Number" style="margin-top: 10px;"> 
+    <br/>
+    <button style="margin-top: 10px;">Calculate Sum</button>
+    <p id="sum"></p>
+
+    <script>
+        const button = document.querySelector('button');
+        const inputs = document.querySelectorAll('input');
+        const sumResult = document.getElementById('sum');
+        button.addEventListener('click', ()=>{
+            const num1 = inputs[0].value;
+            const num2 = inputs[1].value;
+            const sum = Number(num1) + Number(num2);
+            sumResult.innerHTML = `Sum: ${sum}`;
+        });
+
+    </script>
+</body>
+</html>
