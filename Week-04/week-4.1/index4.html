@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Calculator 2</title>
+</head>
+<body>
+    <input oninput="debounceInterest()" id="principal" type="text" placeholder="Principal Amount">
+    <br>
+    <input oninput="debounceInterest()" id="rate" type="text" placeholder="Rate of Interest" style="margin-top: 10px;"> 
+    <br/>
+    <input oninput="debounceInterest()" id="time" type="text" placeholder="Time (years)" style="margin-top: 10px;"> 
+    <br/>
+    <p id="interest"></p>
+
+    <script>
+        // debounce function to limit the rate of API calls
+        // this will wait for 1 second of inactivity before calling calculateInterest
+        let debounceTimeout;
+        function debounceInterest() {
+            clearTimeout(debounceTimeout);
+            debounceTimeout = setTimeout(calculateInterest, 1000);
+        }
+
+        async function calculateInterest(){
+            const p = document.getElementById('principal').value;
+            const r = document.getElementById('rate').value;
+            const t = document.getElementById('time').value;
+            const response = await fetch(`http://localhost:3000/interest?principal=${p}&rate=${r}&time=${t}`);
+            const data = await response.text();
+            document.getElementById('interest').innerHTML = `${data}`;
+        }
+    </script>
+</body>
+</html>
