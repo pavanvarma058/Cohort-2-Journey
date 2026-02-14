@@ -5,6 +5,8 @@ const port = 3000;
 
 const app = express();
 
+app.use(express.json());
+
 const ALL_USERS = [
   {
     username: "yeswanth@gmail.com",
@@ -26,6 +28,14 @@ const ALL_USERS = [
 function userExists(username, password) {
   // write logic to return true or false if this user exists
   // in ALL_USERS array
+  const user = ALL_USERS.find(
+    (user) => user.username === username && user.password === password,
+  );
+  if (user) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 app.post("/signin", function (req, res) {
@@ -50,6 +60,9 @@ app.get("/users", function (req, res) {
     const decoded = jwt.verify(token, jwtPassword);
     const username = decoded.username;
     // return a list of users other than this username
+    res.json({
+      users: ALL_USERS.filter((user) => user.username !== username),
+    });
   } catch (err) {
     return res.status(403).json({
       msg: "Invalid token",
