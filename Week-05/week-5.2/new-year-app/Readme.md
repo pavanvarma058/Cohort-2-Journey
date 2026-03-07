@@ -1,6 +1,6 @@
 ## Todo app
 
-This project contains a simple TODO application
+This project contains a simple TODO application created using React and NodeJs
 It has the following features:-
 
 - Anyone can create a todo
